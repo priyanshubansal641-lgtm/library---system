@@ -12,7 +12,10 @@ const cors = require('cors');
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(express.static(__dirname)); // Serve HTML files
+app.use(express.static(__dirname)); 
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/library-screen.html');
+});// Serve HTML files
 
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -23,10 +26,11 @@ const io = new Server(server, {
 // DATABASE CONNECTION
 // ============================================
 const dbConfig = {
-  host: 'localhost',
-  user: 'root',          // apna MySQL username
-  password: 'Pihubansal@12',          // apna MySQL password
-  database: 'library_db'
+  host: process.env.MYSQLHOST || 'localhost',
+  user: process.env.MYSQLUSER || 'root',
+  password: process.env.MYSQLPASSWORD || '',
+  database: process.env.MYSQLDATABASE || 'library_db',
+  port: process.env.MYSQLPORT || 3306
 };
 
 let db;
