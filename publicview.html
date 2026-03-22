@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Library — Live Seat Status</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #f0f4f8;
+    min-height: 100vh;
+    color: #2d3748;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #1a56db, #1e429f);
+    color: white; padding: 14px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  }
+  .header-left h1 { font-size: 1.4rem; font-weight: 700; }
+  .header-left p  { font-size: 0.78rem; opacity: 0.8; margin-top: 2px; }
+
+  .clock { font-size: 2rem; font-weight: 700; letter-spacing: 2px; text-align: center; }
+  .date  { font-size: 0.72rem; opacity: 0.8; margin-top: 3px; text-align: center; }
+
+  .stats-box { display: flex; gap: 14px; }
+  .stat {
+    background: rgba(255,255,255,0.15);
+    border-radius: 12px; padding: 10px 20px;
+    text-align: center; min-width: 90px;
+  }
+  .stat-num { font-size: 1.8rem; font-weight: 700; line-height: 1; }
+  .stat-num.green { color: #6ee7b7; }
+  .stat-num.red   { color: #fca5a5; }
+  .stat-label { font-size: 0.62rem; opacity: 0.85; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+
+  /* LEGEND BAR */
+  .legend-bar {
+    background: white;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 10px 32px;
+    display: flex; align-items: center; gap: 28px;
+  }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: #4a5568; font-weight: 500; }
+  .legend-dot { width: 16px; height: 16px; border-radius: 4px; flex-shrink: 0; }
+  .legend-dot.free   { background: #48bb78; }
+  .legend-dot.taken  { background: #fc8181; }
+  .legend-bar .live-badge {
+    margin-left: auto;
+    display: flex; align-items: center; gap: 7px;
+    font-size: 0.75rem; font-weight: 600; color: #48bb78;
+  }
+  .live-dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: #48bb78; animation: pulse 1.5s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.7)} }
+
+  /* SEAT AREA */
+  .seat-area {
+    padding: 20px 32px;
+    overflow-y: auto;
+    height: calc(100vh - 130px);
+  }
+  .seat-area::-webkit-scrollbar { width: 5px; }
+  .seat-area::-webkit-scrollbar-thumb { background: #cbd5e0; border-radius: 3px; }
+
+  .section-header {
+    font-size: 0.72rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    color: #718096; margin-bottom: 10px; margin-top: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-header::after { content: ''; flex: 1; height: 1px; background: #e2e8f0; }
+  .section-header:first-child { margin-top: 0; }
+
+  .seat-grid {
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    gap: 5px;
+    margin-bottom: 6px;
+  }
+
+  .seat {
+    aspect-ratio: 1;
+    border-radius: 5px;
+    background: #c6f6d5;
+    border: 1.5px solid #9ae6b4;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.4rem; font-weight: 600; color: #276749;
+    /* NO cursor pointer, NO hover effect — read only */
+    cursor: default;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .seat.occupied {
+    background: #fed7d7;
+    border-color: #fc8181;
+    color: #c53030;
+    animation: occupiedAnim 0.4s ease;
+  }
+  @keyframes occupiedAnim {
+    0%   { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+
+  /* "Just changed" flash */
+  .seat.just-freed {
+    animation: freedFlash 0.8s ease;
+  }
+  @keyframes freedFlash {
+    0%,100% { background: #c6f6d5; border-color: #9ae6b4; }
+    40%     { background: #9ae6b4; border-color: #48bb78; transform: scale(1.15); }
+  }
+
+  /* Ticker at bottom */
+  .ticker {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: #1a56db; color: white;
+    padding: 8px 0; overflow: hidden;
+    font-size: 0.78rem; font-weight: 500;
+  }
+  .ticker-inner {
+    display: inline-block;
+    white-space: nowrap;
+    animation: ticker 30s linear infinite;
+    padding-left: 100%;
+  }
+  @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+  .ticker-sep { margin: 0 28px; opacity: 0.5; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <h1>📚 Library — Live Seat Status</h1>
+    <p>Real-time seat availability — Read Only View</p>
+  </div>
+  <div>
+    <div class="clock" id="clock">--:--:--</div>
+    <div class="date"  id="date">--</div>
+  </div>
+  <div class="stats-box">
+    <div class="stat">
+      <div class="stat-num green" id="avail-count">400</div>
+      <div class="stat-label">Available</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num red" id="occ-count">0</div>
+      <div class="stat-label">Occupied</div>
+    </div>
+  </div>
+</div>
+
+<!-- LEGEND BAR -->
+<div class="legend-bar">
+  <div class="legend-item"><div class="legend-dot free"></div>Available</div>
+  <div class="legend-item"><div class="legend-dot taken"></div>Occupied</div>
+  <div class="live-badge"><div class="live-dot"></div>LIVE</div>
+</div>
+
+<!-- SEAT MAP -->
+<div class="seat-area">
+  <div class="section-header">Section A — Seats 1 to 200</div>
+  <div class="seat-grid" id="grid-A"></div>
+  <div class="section-header">Section B — Seats 1 to 200</div>
+  <div class="seat-grid" id="grid-B"></div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <span class="ticker-inner" id="tickerText">
+    📚 Welcome to the Library &nbsp;&nbsp;&nbsp; Please maintain silence &nbsp;&nbsp;&nbsp; Mobile phones on silent mode &nbsp;&nbsp;&nbsp; Keep your belongings safe &nbsp;&nbsp;&nbsp; Happy Studying! 📖
+  </span>
+</div>
+
+<script>
+// ─── Connect to same server as kiosk ───
+// ⚠️ Yahan apna server address daalo — same jo library-screen.html mein hai
+const socket = io('http://localhost:3000');
+
+let seats = {};
+const TOTAL = 400;
+
+// ─── Build Grid ───
+function buildGrid() {
+  ['A','B'].forEach(sec => {
+    const grid = document.getElementById(`grid-${sec}`);
+    for (let i = 1; i <= 200; i++) {
+      const id = `${sec}${i}`;
+      seats[id] = { occupied: false };
+      const el = document.createElement('div');
+      el.className = 'seat';
+      el.id = `seat-${id}`;
+      el.title = `Seat ${id}`;
+      el.textContent = i;
+      // NO click event — read only!
+      grid.appendChild(el);
+    }
+  });
+}
+
+// ─── Socket Events ───
+// Jab page load ho — saari seats ka status aata hai
+socket.on('all-seats', (data) => {
+  seats = data;
+  Object.keys(seats).forEach(id => updateSeatUI(id, false));
+  updateCounts();
+});
+
+// Jab koi seat change ho — sirf woh seat update hoti hai
+socket.on('seat-update', (data) => {
+  seats[data.seatId] = { occupied: data.occupied, studentId: data.studentId };
+  updateSeatUI(data.seatId, true); // true = animate
+  updateCounts();
+});
+
+// ─── Update Single Seat ───
+function updateSeatUI(id, animate) {
+  const el = document.getElementById(`seat-${id}`);
+  if (!el) return;
+  if (seats[id].occupied) {
+    el.classList.add('occupied');
+  } else {
+    el.classList.remove('occupied');
+    if (animate) {
+      el.classList.add('just-freed');
+      setTimeout(() => el.classList.remove('just-freed'), 800);
+    }
+  }
+}
+
+// ─── Update Counts ───
+function updateCounts() {
+  const occ = Object.values(seats).filter(s => s.occupied).length;
+  document.getElementById('avail-count').textContent = TOTAL - occ;
+  document.getElementById('occ-count').textContent   = occ;
+}
+
+// ─── Clock ───
+function updateClock() {
+  const now = new Date();
+  document.getElementById('clock').textContent = now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  document.getElementById('date').textContent  = now.toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+}
+
+buildGrid();
+updateClock();
+setInterval(updateClock, 1000);
+</script>
+</body>
+</html>

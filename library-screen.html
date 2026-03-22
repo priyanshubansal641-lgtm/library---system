@@ -13,17 +13,14 @@
 
   .header {
     background: linear-gradient(135deg, #1a56db, #1e429f);
-    color: white;
-    padding: 16px 32px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    color: white; padding: 16px 32px;
+    display: flex; align-items: center; justify-content: space-between;
     box-shadow: 0 2px 10px rgba(0,0,0,0.15);
   }
   .header-left h1 { font-size: 1.4rem; font-weight: 700; }
   .header-left p { font-size: 0.8rem; opacity: 0.8; margin-top: 2px; }
-  .clock { font-size: 2.2rem; font-weight: 700; letter-spacing: 2px; line-height: 1; text-align:center; }
-  .date { font-size: 0.75rem; opacity: 0.8; margin-top: 4px; text-align:center; }
+  .clock { font-size: 2.2rem; font-weight: 700; letter-spacing: 2px; line-height: 1; text-align: center; }
+  .date { font-size: 0.75rem; opacity: 0.8; margin-top: 4px; text-align: center; }
   .stats-box { display: flex; gap: 16px; }
   .stat { background: rgba(255,255,255,0.15); border-radius: 12px; padding: 10px 20px; text-align: center; min-width: 90px; }
   .stat-num { font-size: 1.8rem; font-weight: 700; line-height: 1; }
@@ -35,16 +32,15 @@
 
   .left-panel {
     width: 290px; min-width: 290px;
-    background: white;
-    border-right: 1px solid #e2e8f0;
+    background: white; border-right: 1px solid #e2e8f0;
     display: flex; flex-direction: column;
-    padding: 20px; gap: 14px;
-    overflow-y: auto;
+    padding: 20px; gap: 14px; overflow-y: auto;
     box-shadow: 2px 0 8px rgba(0,0,0,0.05);
   }
 
   .panel-title { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #718096; }
 
+  /* Camera */
   .camera-wrapper {
     width: 100%; height: 155px;
     border-radius: 12px; overflow: hidden;
@@ -59,11 +55,22 @@
     animation: scanAnim 2s ease-in-out infinite;
   }
   @keyframes scanAnim { 0%,100% { top: 25%; } 50% { top: 75%; } }
+
   .camera-label { font-size: 0.65rem; color: #a0aec0; text-align: center; }
+
+  /* Camera selector */
+  .camera-select {
+    width: 100%; padding: 8px 10px;
+    border: 1.5px solid #e2e8f0; border-radius: 8px;
+    font-family: 'Poppins', sans-serif; font-size: 0.75rem;
+    color: #4a5568; background: #f7fafc; outline: none; cursor: pointer;
+  }
+  .camera-select:focus { border-color: #1a56db; }
 
   .divider { display: flex; align-items: center; gap: 8px; color: #a0aec0; font-size: 0.75rem; }
   .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: #e2e8f0; }
 
+  /* Input */
   .scan-input {
     width: 100%; padding: 12px 16px;
     border: 2px solid #e2e8f0; border-radius: 10px;
@@ -74,9 +81,8 @@
   .scan-input:focus { border-color: #1a56db; background: white; box-shadow: 0 0 0 3px rgba(26,86,219,0.1); }
   .scan-input::placeholder { color: #a0aec0; font-size: 0.8rem; }
   .input-hint { font-size: 0.62rem; color: #a0aec0; text-align: center; }
-  .small-link { display: block; text-align: center; margin-top: 8px; color: #1a56db; font-size: 0.85rem; text-decoration: none; font-weight: 600; }
-  .small-link:hover { text-decoration: underline; }
 
+  /* Student Card */
   .student-card {
     background: #ebf8ff; border: 1.5px solid #bee3f8;
     border-radius: 12px; padding: 14px;
@@ -90,16 +96,17 @@
   .student-roll { font-size: 0.72rem; color: #718096; margin-bottom: 6px; }
   .student-status { font-size: 0.78rem; font-weight: 500; color: #2d3748; }
 
+  /* Confirm Button */
   .confirm-btn {
     display: none; width: 100%; padding: 13px;
     background: #1a56db; color: white; border: none;
     border-radius: 10px; font-family: 'Poppins', sans-serif;
-    font-size: 0.9rem; font-weight: 600; cursor: pointer;
-    transition: all 0.2s;
+    font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
   }
   .confirm-btn:hover { background: #1e429f; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(26,86,219,0.3); }
   .confirm-btn.show { display: block; animation: fadeIn 0.3s ease; }
 
+  /* Legend */
   .legend { margin-top: auto; padding-top: 14px; border-top: 1px solid #e2e8f0; }
   .legend-title { font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #a0aec0; margin-bottom: 10px; }
   .legend-items { display: flex; flex-direction: column; gap: 8px; }
@@ -109,6 +116,7 @@
   .legend-dot.taken { background: #fc8181; }
   .legend-dot.selected { background: #1a56db; }
 
+  /* Seat Area */
   .seat-area { flex: 1; overflow-y: auto; padding: 20px 24px; }
   .seat-area::-webkit-scrollbar { width: 5px; }
   .seat-area::-webkit-scrollbar-thumb { background: #cbd5e0; border-radius: 3px; }
@@ -135,6 +143,282 @@
   .seat.selected-seat { background: #1a56db; border-color: #1e429f; color: white; transform: scale(1.15); box-shadow: 0 2px 10px rgba(26,86,219,0.5); animation: seatPulse 1.5s infinite; }
   @keyframes seatPulse { 0%,100% { box-shadow: 0 2px 8px rgba(26,86,219,0.4); } 50% { box-shadow: 0 4px 16px rgba(26,86,219,0.7); } }
 
+  /* Mode Toggle */
+  .mode-toggle {
+    display: flex; background: #f7fafc;
+    border: 1.5px solid #e2e8f0; border-radius: 10px;
+    padding: 4px; gap: 4px;
+  }
+  .mode-btn {
+    flex: 1; padding: 8px 6px; border: none; border-radius: 7px;
+    background: transparent; color: #718096;
+    font-family: 'Poppins', sans-serif; font-size: 0.78rem;
+    font-weight: 600; cursor: pointer; transition: all 0.2s;
+  }
+  .mode-btn.active { background: #1a56db; color: white; box-shadow: 0 2px 8px rgba(26,86,219,0.3); }
+
+  /* Visitor Form */
+  .visitor-form { display: none; animation: fadeIn 0.3s ease; }
+  .visitor-form.show { display: block; }
+  .visitor-form .v-label {
+    font-size: 0.68rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 1px; color: #718096; margin-bottom: 5px; display: block;
+  }
+  .visitor-form .v-label .req { color: #e53e3e; margin-left: 2px; }
+  .visitor-form .v-input {
+    width: 100%; padding: 10px 13px;
+    border: 1.5px solid #e2e8f0; border-radius: 9px;
+    font-family: 'Poppins', sans-serif; font-size: 0.82rem;
+    outline: none; transition: all 0.2s; background: #f7fafc;
+    color: #2d3748; margin-bottom: 10px;
+  }
+  .visitor-form .v-input:focus { border-color: #e91e8c; background: white; box-shadow: 0 0 0 3px rgba(233,30,140,0.1); }
+  .visitor-form select.v-input option { background: white; }
+  .visitor-submit {
+    width: 100%; padding: 12px;
+    background: linear-gradient(135deg, #e91e8c, #c2185b);
+    color: white; border: none; border-radius: 10px;
+    font-family: 'Poppins', sans-serif; font-size: 0.88rem;
+    font-weight: 600; cursor: pointer; transition: all 0.2s; margin-top: 2px;
+  }
+  .visitor-submit:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(233,30,140,0.35); }
+  .visitor-success-card {
+    display: none; background: #fff0f6; border: 1.5px solid #fbb6ce;
+    border-radius: 12px; padding: 14px; text-align: center;
+    animation: fadeIn 0.3s ease;
+  }
+  .visitor-success-card.show { display: block; }
+  .visitor-success-card .vs-icon { font-size: 2rem; margin-bottom: 6px; }
+  .visitor-success-card .vs-name { font-size: 1rem; font-weight: 700; color: #c2185b; }
+  .visitor-success-card .vs-info { font-size: 0.72rem; color: #718096; margin-top: 4px; line-height: 1.6; }
+  .new-entry-btn {
+    width: 100%; padding: 9px; margin-top: 10px;
+    background: transparent; border: 1.5px solid #e2e8f0;
+    border-radius: 8px; font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem; font-weight: 600; color: #718096;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .new-entry-btn:hover { border-color: #1a56db; color: #1a56db; }
+
+  /* Visitor Toast */
+  .toast.visitor-toast { border-top-color: #e91e8c; }
+
+  /* KIOSK LOCK SCREEN */
+  .kiosk-lock {
+    position: fixed; inset: 0; z-index: 9999;
+    background: linear-gradient(135deg, #1a56db, #1e429f);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+  }
+  .kiosk-lock.hide { display: none; }
+  .kiosk-lock-box {
+    background: white; border-radius: 24px;
+    padding: 48px 44px; width: 420px; text-align: center;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+    animation: fadeIn 0.4s ease;
+  }
+  .kiosk-lock-box .lock-icon { font-size: 4rem; margin-bottom: 16px; }
+  .kiosk-lock-box h1 { font-size: 1.6rem; font-weight: 700; color: #1a56db; margin-bottom: 4px; }
+  .kiosk-lock-box .lock-sub { font-size: 0.82rem; color: #718096; margin-bottom: 28px; }
+  .kiosk-lock-box .kiosk-pw-input {
+    width: 100%; padding: 14px 18px;
+    border: 2px solid #e2e8f0; border-radius: 12px;
+    font-family: 'Poppins', sans-serif; font-size: 1rem;
+    outline: none; transition: all 0.2s; text-align: center;
+    letter-spacing: 4px; margin-bottom: 8px; color: #2d3748;
+  }
+  .kiosk-lock-box .kiosk-pw-input:focus { border-color: #1a56db; box-shadow: 0 0 0 3px rgba(26,86,219,0.1); }
+  .kiosk-lock-box .kiosk-pw-input.error { border-color: #e53e3e; animation: shake 0.4s ease; }
+  .kiosk-lock-box .kiosk-error { color: #e53e3e; font-size: 0.78rem; margin-bottom: 12px; display: none; min-height: 20px; }
+  .kiosk-lock-box .kiosk-error.show { display: block; }
+  .kiosk-lock-box .unlock-btn {
+    width: 100%; padding: 14px; background: #1a56db; color: white;
+    border: none; border-radius: 12px; font-family: 'Poppins', sans-serif;
+    font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.2s;
+  }
+  .kiosk-lock-box .unlock-btn:hover { background: #1e429f; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(26,86,219,0.4); }
+
+  /* SHARE MODAL */
+  .share-modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+    z-index: 3000; display: none; align-items: center; justify-content: center;
+    backdrop-filter: blur(4px);
+  }
+  .share-modal-overlay.show { display: flex; }
+  .share-modal {
+    background: white; border-radius: 20px; padding: 36px;
+    width: 480px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: fadeIn 0.3s ease;
+  }
+  .share-modal h3 { font-size: 1.2rem; font-weight: 700; color: #2d3748; margin-bottom: 6px; }
+  .share-modal .share-sub { font-size: 0.8rem; color: #718096; margin-bottom: 24px; }
+  .share-btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .share-option-btn {
+    padding: 16px 12px; border-radius: 14px; border: 1.5px solid #e2e8f0;
+    background: #f7fafc; cursor: pointer; transition: all 0.2s; text-align: center;
+    font-family: 'Poppins', sans-serif;
+  }
+  .share-option-btn:hover { border-color: #1a56db; background: #ebf8ff; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(26,86,219,0.1); }
+  .share-option-btn .so-icon { font-size: 2rem; margin-bottom: 8px; }
+  .share-option-btn .so-label { font-size: 0.82rem; font-weight: 600; color: #2d3748; }
+  .share-option-btn .so-desc { font-size: 0.68rem; color: #718096; margin-top: 3px; }
+  .share-close-btn {
+    width: 100%; padding: 11px; background: transparent; border: 1.5px solid #e2e8f0;
+    border-radius: 10px; font-family: 'Poppins', sans-serif; font-size: 0.88rem;
+    font-weight: 600; color: #718096; cursor: pointer; transition: all 0.2s;
+  }
+  .share-close-btn:hover { border-color: #cbd5e0; color: #4a5568; }
+
+  .date-filter-btn {
+    padding: 6px 12px; border-radius: 8px;
+    border: 1.5px solid #e2e8f0; background: #f7fafc;
+    font-family: 'Poppins', sans-serif; font-size: 0.75rem;
+    font-weight: 600; cursor: pointer; color: #718096; transition: all 0.2s;
+  }
+  .date-filter-btn:hover { border-color: #1a56db; color: #1a56db; }
+  .date-filter-btn.active { background: #1a56db; color: white; border-color: #1a56db; }
+
+  /* Admin Login Button in Header */
+  .admin-login-btn {
+    background: rgba(255,255,255,0.15); border: 1.5px solid rgba(255,255,255,0.3);
+    color: white; padding: 8px 16px; border-radius: 8px;
+    font-family: 'Poppins', sans-serif; font-size: 0.8rem; font-weight: 600;
+    cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 6px;
+  }
+  .admin-login-btn:hover { background: rgba(255,255,255,0.25); }
+
+  /* Admin Login Modal */
+  .admin-modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+    z-index: 2000; display: none; align-items: center; justify-content: center;
+    backdrop-filter: blur(4px);
+  }
+  .admin-modal-overlay.show { display: flex; }
+  .admin-modal {
+    background: white; border-radius: 20px; padding: 40px;
+    width: 380px; text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: fadeIn 0.3s ease;
+  }
+  .admin-modal .modal-icon { font-size: 3rem; margin-bottom: 12px; }
+  .admin-modal h2 { font-size: 1.4rem; font-weight: 700; color: #2d3748; margin-bottom: 6px; }
+  .admin-modal p { font-size: 0.82rem; color: #718096; margin-bottom: 24px; }
+  .admin-modal .pw-input {
+    width: 100%; padding: 13px 16px;
+    border: 2px solid #e2e8f0; border-radius: 10px;
+    font-family: 'Poppins', sans-serif; font-size: 0.95rem;
+    outline: none; transition: all 0.2s; text-align: center;
+    letter-spacing: 3px; margin-bottom: 14px; color: #2d3748;
+  }
+  .admin-modal .pw-input:focus { border-color: #1a56db; box-shadow: 0 0 0 3px rgba(26,86,219,0.1); }
+  .admin-modal .pw-input.error { border-color: #e53e3e; animation: shake 0.4s ease; }
+  @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-8px)} 75%{transform:translateX(8px)} }
+  .admin-modal .login-btn {
+    width: 100%; padding: 13px; background: #1a56db; color: white;
+    border: none; border-radius: 10px; font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
+  }
+  .admin-modal .login-btn:hover { background: #1e429f; transform: translateY(-1px); }
+  .admin-modal .cancel-btn {
+    width: 100%; padding: 10px; background: transparent; color: #718096;
+    border: 1.5px solid #e2e8f0; border-radius: 10px; margin-top: 8px;
+    font-family: 'Poppins', sans-serif; font-size: 0.88rem; font-weight: 500;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .admin-modal .cancel-btn:hover { border-color: #cbd5e0; color: #4a5568; }
+  .admin-modal .error-msg { color: #e53e3e; font-size: 0.78rem; margin-top: -8px; margin-bottom: 10px; display: none; }
+  .admin-modal .error-msg.show { display: block; }
+
+  /* Admin Dashboard */
+  .admin-dashboard {
+    display: none; position: fixed; inset: 0; z-index: 1500;
+    background: #f0f4f8; overflow-y: auto;
+    animation: fadeIn 0.3s ease;
+  }
+  .admin-dashboard.show { display: block; }
+  .admin-dash-header {
+    background: linear-gradient(135deg, #1e429f, #1a56db);
+    color: white; padding: 16px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  }
+  .admin-dash-header h2 { font-size: 1.3rem; font-weight: 700; }
+  .admin-dash-header p { font-size: 0.75rem; opacity: 0.8; margin-top: 2px; }
+  .logout-btn {
+    background: rgba(255,255,255,0.15); border: 1.5px solid rgba(255,255,255,0.3);
+    color: white; padding: 8px 18px; border-radius: 8px;
+    font-family: 'Poppins', sans-serif; font-size: 0.82rem; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .logout-btn:hover { background: rgba(255,58,92,0.3); border-color: rgba(255,58,92,0.5); }
+  .admin-dash-body { padding: 28px 32px; }
+
+  /* Admin Stats */
+  .admin-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 14px; margin-bottom: 28px; }
+  .admin-stat-card {
+    background: white; border-radius: 14px; padding: 18px 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;
+  }
+  .admin-stat-card .asc-label { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #718096; }
+  .admin-stat-card .asc-val { font-size: 2rem; font-weight: 700; margin-top: 4px; }
+  .asc-val.blue { color: #1a56db; } .asc-val.green { color: #38a169; } .asc-val.red { color: #e53e3e; } .asc-val.pink { color: #c2185b; }
+
+  /* Admin Seats Grid */
+  .admin-section-title {
+    font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 1.5px; color: #718096; margin-bottom: 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .admin-section-title::after { content: ''; flex: 1; height: 1px; background: #e2e8f0; }
+  .admin-seat-grid {
+    display: grid; grid-template-columns: repeat(20,1fr); gap: 5px; margin-bottom: 8px;
+  }
+  .admin-seat {
+    aspect-ratio: 1; border-radius: 5px;
+    background: #c6f6d5; border: 1.5px solid #9ae6b4;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.4rem; font-weight: 600; color: #276749;
+    cursor: pointer; transition: all 0.15s; position: relative;
+  }
+  .admin-seat:hover { transform: scale(1.2); z-index: 5; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+  .admin-seat.occupied { background: #fed7d7; border-color: #fc8181; color: #c53030; }
+  .admin-seat.occupied:hover { box-shadow: 0 2px 8px rgba(229,62,62,0.4); }
+  .admin-seat-tooltip {
+    position: fixed; background: #2d3748; color: white; padding: 6px 12px;
+    border-radius: 8px; font-size: 0.72rem; font-family: 'Poppins', sans-serif;
+    z-index: 9999; pointer-events: none; display: none; white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+
+  /* Logs Table */
+  .logs-card { background: white; border-radius: 14px; padding: 22px; margin-top: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; }
+  .logs-tabs { display: flex; gap: 8px; margin-bottom: 16px; }
+  .logs-tab {
+    padding: 7px 18px; border-radius: 8px; border: 1.5px solid #e2e8f0;
+    background: transparent; color: #718096; font-family: 'Poppins', sans-serif;
+    font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
+  }
+  .logs-tab.active { background: #1a56db; color: white; border-color: #1a56db; }
+  .log-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  .log-table th { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #718096; border-bottom: 1.5px solid #e2e8f0; padding: 8px 12px; text-align: left; }
+  .log-table td { padding: 10px 12px; border-bottom: 1px solid #f0f4f8; color: #2d3748; }
+  .log-table tr:last-child td { border-bottom: none; }
+  .log-table tr:hover td { background: #f7fafc; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.68rem; font-weight: 600; }
+  .badge-green { background: #c6f6d5; color: #276749; }
+  .badge-red { background: #fed7d7; color: #c53030; }
+  .badge-blue { background: #ebf8ff; color: #2b6cb0; }
+  .empty-row td { text-align: center; color: #a0aec0; padding: 30px !important; font-size: 0.85rem; }
+
+  /* Seat release button in admin */
+  .release-btn {
+    padding: 4px 10px; background: #e53e3e; color: white; border: none;
+    border-radius: 6px; font-family: 'Poppins', sans-serif; font-size: 0.72rem;
+    font-weight: 600; cursor: pointer; transition: all 0.2s;
+  }
+  .release-btn:hover { background: #c53030; }
+
+  /* Overlay & Toast */
   .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 999; opacity: 0; pointer-events: none; transition: opacity 0.3s; backdrop-filter: blur(3px); }
   .overlay.show { opacity: 1; }
 
@@ -145,10 +429,8 @@
     padding: 40px 50px; text-align: center;
     z-index: 1000; opacity: 0;
     transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-    min-width: 360px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-    border-top: 5px solid #48bb78;
-    pointer-events: none;
+    min-width: 360px; box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    border-top: 5px solid #48bb78; pointer-events: none;
   }
   .toast.show { opacity: 1; transform: translate(-50%, -50%) scale(1); }
   .toast.exit-toast { border-top-color: #1a56db; }
@@ -160,6 +442,23 @@
 </head>
 <body>
 
+<!-- ══════════════════════════════════════ -->
+<!-- KIOSK LOCK SCREEN                      -->
+<!-- ══════════════════════════════════════ -->
+<div class="kiosk-lock" id="kioskLock">
+  <div class="kiosk-lock-box">
+    <div class="lock-icon">📚🔒</div>
+    <h1>Library Kiosk</h1>
+    <p class="lock-sub">Staff password daalo system access karne ke liye</p>
+    <input type="password" class="kiosk-pw-input" id="kioskPwInput"
+      placeholder="••••••••"
+      onkeydown="if(event.key==='Enter') checkKioskPw()">
+    <div class="kiosk-error" id="kioskError">❌ Galat password! Dobara try karo.</div>
+    <button class="unlock-btn" onclick="checkKioskPw()">🔓 Unlock System</button>
+  </div>
+</div>
+
+<!-- HEADER -->
 <div class="header">
   <div class="header-left">
     <h1>📚 Library Seat Management</h1>
@@ -178,27 +477,94 @@
       <div class="stat-num red" id="occ-count">0</div>
       <div class="stat-label">Occupied</div>
     </div>
+    <button class="admin-login-btn" onclick="openAdminLogin()">🔐 Admin</button>
   </div>
 </div>
 
+<!-- MAIN -->
 <div class="main">
   <div class="left-panel">
+
+    <!-- MODE TOGGLE -->
+    <div class="mode-toggle">
+      <button class="mode-btn active" id="btnStudent" onclick="switchMode('student')">🎓 Student</button>
+      <button class="mode-btn" id="btnVisitor" onclick="switchMode('visitor')">👤 Visitor</button>
+    </div>
+
+    <!-- ── STUDENT SECTION ── -->
+    <div id="studentSection">
     <div class="panel-title">🔍 Scan ID Card</div>
+
+    <!-- Camera -->
     <div class="camera-wrapper">
       <video id="camera-view" autoplay playsinline muted></video>
       <div class="scan-line"></div>
     </div>
+
+    <!-- Camera Selector Dropdown -->
+    <select class="camera-select" id="camera-select" onchange="switchCamera(this.value)">
+      <option value="">📷 Select Camera...</option>
+    </select>
+
     <div class="camera-label">Show barcode in front of camera</div>
+
     <div class="divider">OR</div>
-    <input type="text" id="barcode-input" class="scan-input" placeholder="Scan or type ID number..." autofocus autocomplete="off"/>
-    <a href="student-view.html" class="small-link">Open Student View</a>
-    <div class="input-hint">⚡ External scanner will auto-submit</div>
+
+    <!-- USB Scanner Input -->
+    <input type="text" id="barcode-input" class="scan-input" placeholder="Scan ID with USB scanner..." autofocus autocomplete="off"/>
+    <div class="input-hint">⚡ USB scanner auto-submits on scan</div>
+
+    <!-- Student Card -->
     <div class="student-card" id="student-card">
       <div class="student-name" id="student-name">—</div>
       <div class="student-roll" id="student-id">ID: —</div>
       <div class="student-status" id="student-status">—</div>
     </div>
+
+    <!-- Confirm Button -->
     <button class="confirm-btn" id="confirm-btn" onclick="confirmSeat()">✅ Confirm Seat</button>
+
+    </div><!-- end studentSection -->
+
+    <!-- ── VISITOR SECTION ── -->
+    <div id="visitorSection" style="display:none;">
+      <div class="panel-title">👤 Visitor Entry</div>
+
+      <!-- Visitor Form -->
+      <div class="visitor-form show" id="visitorForm">
+        <label class="v-label">Full Name <span class="req">*</span></label>
+        <input type="text" class="v-input" id="vName" placeholder="Apna poora naam...">
+
+        <label class="v-label">Mobile Number <span class="req">*</span></label>
+        <input type="tel" class="v-input" id="vMobile" placeholder="10 digit number..." maxlength="10" oninput="this.value=this.value.replace(/\D/g,'')">
+
+        <label class="v-label">Email <span style="font-size:.65rem;font-weight:400;text-transform:none;letter-spacing:0;">(optional)</span></label>
+        <input type="email" class="v-input" id="vEmail" placeholder="email@example.com">
+
+        <label class="v-label">Purpose <span style="font-size:.65rem;font-weight:400;text-transform:none;letter-spacing:0;">(optional)</span></label>
+        <select class="v-input" id="vPurpose">
+          <option value="">-- Select Purpose --</option>
+          <option value="Reading">📖 Reading</option>
+          <option value="Research">🔬 Research</option>
+          <option value="Meeting">🤝 Meeting</option>
+          <option value="Returning Book">📚 Returning Book</option>
+          <option value="Issuing Book">📕 Issuing Book</option>
+          <option value="Other">💬 Other</option>
+        </select>
+
+        <button class="visitor-submit" onclick="submitVisitor()">✅ Register Visit</button>
+      </div>
+
+      <!-- Visitor Success -->
+      <div class="visitor-success-card" id="visitorSuccess">
+        <div class="vs-icon">🎉</div>
+        <div class="vs-name" id="vs-name">—</div>
+        <div class="vs-info" id="vs-info">—</div>
+        <button class="new-entry-btn" onclick="resetVisitorForm()">+ New Visitor Entry</button>
+      </div>
+    </div><!-- end visitorSection -->
+
+    <!-- Legend -->
     <div class="legend">
       <div class="legend-title">Legend</div>
       <div class="legend-items">
@@ -209,6 +575,7 @@
     </div>
   </div>
 
+  <!-- Seat Map -->
   <div class="seat-area">
     <div class="section-header">Section A — Seats 1 to 200</div>
     <div class="seat-grid" id="grid-A"></div>
@@ -225,10 +592,482 @@
   <div class="toast-seat" id="toast-seat"></div>
 </div>
 
+<!-- ══════════════════════════════════════ -->
+<!-- ADMIN LOGIN MODAL                      -->
+<!-- ══════════════════════════════════════ -->
+<div class="admin-modal-overlay" id="adminModalOverlay">
+  <div class="admin-modal">
+    <div class="modal-icon">🔐</div>
+    <h2>Admin Login</h2>
+    <p>Password daalo dashboard access karne ke liye</p>
+    <input type="password" class="pw-input" id="adminPwInput" placeholder="••••••••" onkeydown="if(event.key==='Enter') checkAdminPw()">
+    <div class="error-msg" id="pwErrorMsg">❌ Galat password! Dobara try karo.</div>
+    <button class="login-btn" onclick="checkAdminPw()">Login →</button>
+    <button class="cancel-btn" onclick="closeAdminLogin()">Cancel</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- ADMIN DASHBOARD                        -->
+<!-- ══════════════════════════════════════ -->
+<div class="admin-dashboard" id="adminDashboard">
+
+  <!-- Dashboard Header -->
+  <div class="admin-dash-header">
+    <div>
+      <h2>🛡 Admin Dashboard</h2>
+      <p>Library management — real-time control</p>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;">
+      <button class="logout-btn" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.3);" onclick="openShareModal()">📤 Share Data</button>
+      <button class="logout-btn" onclick="adminLogout()">🚪 Logout</button>
+    </div>
+  </div>
+
+  <div class="admin-dash-body">
+
+    <!-- Stats -->
+    <div class="admin-stats">
+      <div class="admin-stat-card">
+        <div class="asc-label">Total Seats</div>
+        <div class="asc-val blue" id="ad-total">400</div>
+      </div>
+      <div class="admin-stat-card">
+        <div class="asc-label">Available</div>
+        <div class="asc-val green" id="ad-avail">400</div>
+      </div>
+      <div class="admin-stat-card">
+        <div class="asc-label">Occupied</div>
+        <div class="asc-val red" id="ad-occ">0</div>
+      </div>
+      <div class="admin-stat-card">
+        <div class="asc-label">Visitors Today</div>
+        <div class="asc-val pink" id="ad-visitors">0</div>
+      </div>
+      <div class="admin-stat-card">
+        <div class="asc-label">Students Today</div>
+        <div class="asc-val blue" id="ad-students">0</div>
+      </div>
+    </div>
+
+    <!-- Seat Map -->
+    <div class="admin-section-title">Section A — Seats 1 to 200</div>
+    <div class="admin-seat-grid" id="admin-grid-A"></div>
+    <div class="admin-section-title" style="margin-top:16px;">Section B — Seats 1 to 200</div>
+    <div class="admin-seat-grid" id="admin-grid-B"></div>
+    <p style="font-size:0.7rem;color:#a0aec0;margin-top:8px;">💡 Kisi bhi occupied seat pe click karo — manually release ho jaayegi</p>
+
+    <!-- Logs -->
+    <div class="logs-card">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px;">
+        <div style="font-size:1rem;font-weight:700;color:#2d3748;">📋 Logs</div>
+        <!-- Date Filter Buttons -->
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+          <button class="date-filter-btn active" id="df-today"   onclick="setDateFilter('today')">📅 Aaj</button>
+          <button class="date-filter-btn"        id="df-week"    onclick="setDateFilter('week')">📆 Is Hafte</button>
+          <button class="date-filter-btn"        id="df-month"   onclick="setDateFilter('month')">🗓 Is Mahine</button>
+          <button class="date-filter-btn"        id="df-all"     onclick="setDateFilter('all')">📂 Sab</button>
+          <button onclick="refreshLogs()" style="padding:6px 14px;background:#f0f4f8;border:1.5px solid #e2e8f0;border-radius:8px;font-family:'Poppins',sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;color:#4a5568;">🔄 Refresh</button>
+        </div>
+      </div>
+      <div class="logs-tabs">
+        <button class="logs-tab active" id="tabStudent" onclick="switchLogTab('student')">🎓 Students</button>
+        <button class="logs-tab" id="tabVisitor" onclick="switchLogTab('visitor')">👤 Visitors</button>
+      </div>
+
+      <!-- Student Logs -->
+      <div id="studentLogsDiv" style="overflow-x:auto;">
+        <table class="log-table">
+          <thead><tr><th>Roll No</th><th>Name</th><th>Seat</th><th>Date</th><th>Entry Time</th><th>Exit Time</th><th>Duration</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody id="studentLogsBody"><tr class="empty-row"><td colspan="9">Koi data nahi — pehle students scan karein</td></tr></tbody>
+        </table>
+      </div>
+
+      <!-- Visitor Logs -->
+      <div id="visitorLogsDiv" style="overflow-x:auto;display:none;">
+        <table class="log-table">
+          <thead><tr><th>Name</th><th>Mobile</th><th>Email</th><th>Purpose</th><th>Time</th><th>Date</th></tr></thead>
+          <tbody id="visitorLogsBody"><tr class="empty-row"><td colspan="6">Koi visitor nahi aaya abhi tak</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- SHARE MODAL                            -->
+<!-- ══════════════════════════════════════ -->
+<div class="share-modal-overlay" id="shareModalOverlay">
+  <div class="share-modal">
+    <h3>📤 Data Share / Export</h3>
+    <p class="share-sub">Kaunsa data share ya download karna hai?</p>
+
+    <div class="share-btn-grid">
+      <div class="share-option-btn" onclick="exportCSV('students')">
+        <div class="so-icon">📊</div>
+        <div class="so-label">Students CSV</div>
+        <div class="so-desc">Entry/Exit logs download karo</div>
+      </div>
+      <div class="share-option-btn" onclick="exportCSV('visitors')">
+        <div class="so-icon">👤</div>
+        <div class="so-label">Visitors CSV</div>
+        <div class="so-desc">Visitor records download karo</div>
+      </div>
+      <div class="share-option-btn" onclick="exportCSV('both')">
+        <div class="so-icon">📁</div>
+        <div class="so-label">Full Report CSV</div>
+        <div class="so-desc">Students + Visitors dono</div>
+      </div>
+      <div class="share-option-btn" onclick="copyShareLink()">
+        <div class="so-icon">🔗</div>
+        <div class="so-label">Link Copy Karo</div>
+        <div class="so-desc">Public view ka link</div>
+      </div>
+      <div class="share-option-btn" onclick="printReport()">
+        <div class="so-icon">🖨️</div>
+        <div class="so-label">Print Report</div>
+        <div class="so-desc">Aaj ka report print karo</div>
+      </div>
+      <div class="share-option-btn" onclick="shareWhatsApp()">
+        <div class="so-icon">💬</div>
+        <div class="so-label">WhatsApp Summary</div>
+        <div class="so-desc">Quick summary share karo</div>
+      </div>
+    </div>
+
+    <button class="share-close-btn" onclick="closeShareModal()">Close</button>
+  </div>
+</div>
+
+<!-- Seat Tooltip -->
+<div class="admin-seat-tooltip" id="seatTooltip"></div>
+
 <script>
 const socket = io('http://localhost:3000');
 let currentStudent = null, selectedSeat = null, seats = {};
+let currentStream = null;
 
+// ============================================
+// KIOSK PASSWORD
+// ============================================
+const KIOSK_PASSWORD = 'kiosk123'; // ← yahan apna kiosk password change karo
+
+function checkKioskPw() {
+  const pw = document.getElementById('kioskPwInput').value;
+  if (pw === KIOSK_PASSWORD) {
+    document.getElementById('kioskLock').classList.add('hide');
+    document.getElementById('barcode-input').focus();
+  } else {
+    const input = document.getElementById('kioskPwInput');
+    input.classList.add('error');
+    document.getElementById('kioskError').classList.add('show');
+    input.value = '';
+    setTimeout(() => input.classList.remove('error'), 500);
+  }
+}
+
+// ============================================
+// SHARE / EXPORT FUNCTIONS
+// ============================================
+let cachedStudentLogs = [];
+let cachedVisitorLogs = [];
+
+// Cache logs when received
+socket.on('student-logs', (logs) => { cachedStudentLogs = logs || []; });
+socket.on('visitor-logs', (logs) => { cachedVisitorLogs = logs || []; });
+
+function openShareModal() {
+  refreshLogs(); // latest data lo
+  document.getElementById('shareModalOverlay').classList.add('show');
+}
+function closeShareModal() {
+  document.getElementById('shareModalOverlay').classList.remove('show');
+}
+
+function exportCSV(type) {
+  let csv = '', filename = '';
+  const now = new Date().toLocaleDateString('en-IN').replace(/\//g,'-');
+
+  if (type === 'students' || type === 'both') {
+    csv += 'STUDENT LOGS\n';
+    csv += 'Roll No,Name,Seat,Entry Time,Exit Time,Status\n';
+    cachedStudentLogs.forEach(l => {
+      csv += `${l.roll_number||''},${l.name||''},${l.seat_id||''},`;
+      csv += `${l.entry_time ? new Date(l.entry_time).toLocaleString('en-IN') : ''},`;
+      csv += `${l.exit_time  ? new Date(l.exit_time).toLocaleString('en-IN')  : 'Still Inside'},`;
+      csv += `${l.exit_time ? 'Exited' : 'Inside'}\n`;
+    });
+    filename = `student-logs-${now}.csv`;
+  }
+
+  if (type === 'visitors' || type === 'both') {
+    if (type === 'both') csv += '\nVISITOR LOGS\n';
+    csv += 'Name,Mobile,Email,Purpose,Time,Date\n';
+    cachedVisitorLogs.forEach(l => {
+      csv += `${l.name||''},${l.mobile||''},${l.email||''},${l.purpose||''},${l.time||''},${l.date||''}\n`;
+    });
+    if (type === 'visitors') filename = `visitor-logs-${now}.csv`;
+    else filename = `full-report-${now}.csv`;
+  }
+
+  if (!csv || csv.trim() === '') { alert('Koi data nahi hai abhi!'); return; }
+
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url; a.download = filename; a.click();
+  URL.revokeObjectURL(url);
+  closeShareModal();
+}
+
+function copyShareLink() {
+  const link = window.location.origin + '/public-view.html';
+  navigator.clipboard.writeText(link).then(() => {
+    alert('✅ Link copied!\n' + link);
+  }).catch(() => {
+    prompt('Yeh link copy karo:', link);
+  });
+  closeShareModal();
+}
+
+function printReport() {
+  const occ = Object.values(seats).filter(s => s.occupied).length;
+  const now = new Date().toLocaleString('en-IN');
+  const win = window.open('', '_blank');
+  win.document.write(`
+    <html><head><title>Library Report</title>
+    <style>
+      body{font-family:Arial,sans-serif;padding:30px;color:#2d3748;}
+      h1{color:#1a56db;} table{width:100%;border-collapse:collapse;margin-top:16px;}
+      th{background:#1a56db;color:white;padding:8px 12px;text-align:left;font-size:12px;}
+      td{padding:8px 12px;border-bottom:1px solid #e2e8f0;font-size:12px;}
+      .stat-row{display:flex;gap:20px;margin:16px 0;}
+      .stat-box{background:#f0f4f8;border-radius:8px;padding:12px 20px;text-align:center;}
+      .stat-box .num{font-size:2rem;font-weight:700;color:#1a56db;}
+      .stat-box .lbl{font-size:11px;color:#718096;text-transform:uppercase;}
+    </style></head><body>
+    <h1>📚 Library Report</h1>
+    <p style="color:#718096;">Generated: ${now}</p>
+    <div class="stat-row">
+      <div class="stat-box"><div class="num">${400-occ}</div><div class="lbl">Available</div></div>
+      <div class="stat-box"><div class="num">${occ}</div><div class="lbl">Occupied</div></div>
+      <div class="stat-box"><div class="num">${cachedStudentLogs.length}</div><div class="lbl">Students Today</div></div>
+      <div class="stat-box"><div class="num">${cachedVisitorLogs.length}</div><div class="lbl">Visitors Today</div></div>
+    </div>
+    <h2>Student Logs</h2>
+    <table><thead><tr><th>Roll No</th><th>Name</th><th>Seat</th><th>Entry</th><th>Exit</th><th>Status</th></tr></thead>
+    <tbody>${cachedStudentLogs.map(l=>`<tr>
+      <td>${l.roll_number||'—'}</td><td>${l.name||'—'}</td><td>${l.seat_id||'—'}</td>
+      <td>${l.entry_time?new Date(l.entry_time).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'}):'—'}</td>
+      <td>${l.exit_time?new Date(l.exit_time).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'}):'—'}</td>
+      <td>${l.exit_time?'Exited':'Inside'}</td></tr>`).join('')||'<tr><td colspan="6" style="text-align:center;color:#a0aec0;">No data</td></tr>'}
+    </tbody></table>
+    <h2 style="margin-top:24px;">Visitor Logs</h2>
+    <table><thead><tr><th>Name</th><th>Mobile</th><th>Email</th><th>Purpose</th><th>Time</th></tr></thead>
+    <tbody>${cachedVisitorLogs.map(l=>`<tr>
+      <td>${l.name||'—'}</td><td>${l.mobile||'—'}</td><td>${l.email||'—'}</td>
+      <td>${l.purpose||'—'}</td><td>${l.time||'—'}</td></tr>`).join('')||'<tr><td colspan="5" style="text-align:center;color:#a0aec0;">No data</td></tr>'}
+    </tbody></table>
+    </body></html>`);
+  win.document.close();
+  win.print();
+  closeShareModal();
+}
+
+function shareWhatsApp() {
+  const occ = Object.values(seats).filter(s => s.occupied).length;
+  const now = new Date().toLocaleString('en-IN');
+  const msg = `📚 *Library Status Report*\n🕐 ${now}\n\n` +
+    `🟢 Available: ${400-occ}\n🔴 Occupied: ${occ}\n` +
+    `🎓 Students Today: ${cachedStudentLogs.length}\n` +
+    `👤 Visitors Today: ${cachedVisitorLogs.length}`;
+  const url = `https://wa.me/?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
+  closeShareModal();
+}
+
+// ============================================
+// DATE FILTER
+// ============================================
+let currentDateFilter = 'today';
+
+function setDateFilter(filter) {
+  currentDateFilter = filter;
+  // Update active button
+  ['today','week','month','all'].forEach(f => {
+    document.getElementById(`df-${f}`).classList.toggle('active', f === filter);
+  });
+  refreshLogs();
+}
+
+function refreshLogs() {
+  socket.emit('get-student-logs', { filter: currentDateFilter });
+  socket.emit('get-visitor-logs', { filter: currentDateFilter });
+}
+
+// ============================================
+// ADMIN PASSWORD (change karo yahan)
+// ============================================
+const ADMIN_PASSWORD = 'admin123';
+let isAdminLoggedIn = false;
+let adminSeats = {}; // admin dashboard ke liye copy
+
+function openAdminLogin() {
+  document.getElementById('adminModalOverlay').classList.add('show');
+  document.getElementById('adminPwInput').value = '';
+  document.getElementById('pwErrorMsg').classList.remove('show');
+  document.getElementById('adminPwInput').classList.remove('error');
+  setTimeout(() => document.getElementById('adminPwInput').focus(), 100);
+}
+
+function closeAdminLogin() {
+  document.getElementById('adminModalOverlay').classList.remove('show');
+}
+
+function checkAdminPw() {
+  const pw = document.getElementById('adminPwInput').value;
+  if (pw === ADMIN_PASSWORD) {
+    closeAdminLogin();
+    openAdminDashboard();
+  } else {
+    const input = document.getElementById('adminPwInput');
+    input.classList.add('error');
+    document.getElementById('pwErrorMsg').classList.add('show');
+    input.value = '';
+    setTimeout(() => { input.classList.remove('error'); }, 500);
+  }
+}
+
+function openAdminDashboard() {
+  isAdminLoggedIn = true;
+  document.getElementById('adminDashboard').classList.add('show');
+  buildAdminGrid();
+  refreshLogs();
+  updateAdminStats();
+}
+
+function adminLogout() {
+  isAdminLoggedIn = false;
+  document.getElementById('adminDashboard').classList.remove('show');
+}
+
+// ============================================
+// ADMIN SEAT GRID
+// ============================================
+function buildAdminGrid() {
+  ['A','B'].forEach(sec => {
+    const grid = document.getElementById(`admin-grid-${sec}`);
+    grid.innerHTML = '';
+    for (let i = 1; i <= 200; i++) {
+      const id = `${sec}${i}`;
+      const el = document.createElement('div');
+      el.className = 'admin-seat' + (seats[id]?.occupied ? ' occupied' : '');
+      el.id = `admin-seat-${id}`;
+      el.textContent = i;
+      el.title = `Seat ${id}`;
+      el.addEventListener('click', () => adminReleaseSeat(id));
+      el.addEventListener('mousemove', (e) => showSeatTooltip(e, id));
+      el.addEventListener('mouseleave', hideSeatTooltip);
+      grid.appendChild(el);
+    }
+  });
+}
+
+function updateAdminSeatUI(id) {
+  const el = document.getElementById(`admin-seat-${id}`);
+  if (!el) return;
+  if (seats[id]?.occupied) el.classList.add('occupied');
+  else el.classList.remove('occupied');
+}
+
+function adminReleaseSeat(id) {
+  if (!seats[id]?.occupied) return;
+  if (confirm(`Seat ${id} ko manually release karna hai?`)) {
+    socket.emit('admin-release-seat', { seatId: id });
+  }
+}
+
+function showSeatTooltip(e, id) {
+  const tooltip = document.getElementById('seatTooltip');
+  const info = seats[id];
+  if (info?.occupied) {
+    tooltip.textContent = `Seat ${id} — Occupied${info.studentName ? ' by ' + info.studentName : ''}`;
+    tooltip.style.display = 'block';
+    tooltip.style.left = (e.clientX + 12) + 'px';
+    tooltip.style.top  = (e.clientY - 30) + 'px';
+  }
+}
+function hideSeatTooltip() { document.getElementById('seatTooltip').style.display = 'none'; }
+
+// ============================================
+// ADMIN STATS
+// ============================================
+function updateAdminStats() {
+  const occ = Object.values(seats).filter(s => s.occupied).length;
+  document.getElementById('ad-total').textContent = 400;
+  document.getElementById('ad-avail').textContent = 400 - occ;
+  document.getElementById('ad-occ').textContent   = occ;
+}
+
+// ============================================
+// ADMIN LOGS
+// ============================================
+function refreshLogs() {
+  socket.emit('get-student-logs');
+  socket.emit('get-visitor-logs');
+}
+
+socket.on('student-logs', (logs) => {
+  const tbody = document.getElementById('studentLogsBody');
+  if (!logs || !logs.length) {
+    tbody.innerHTML = '<tr class="empty-row"><td colspan="7">Koi student log nahi</td></tr>';
+    document.getElementById('ad-students').textContent = 0;
+    return;
+  }
+  document.getElementById('ad-students').textContent = logs.length;
+  tbody.innerHTML = logs.map(l => `
+    <tr>
+      <td><strong>${l.roll_number || '—'}</strong></td>
+      <td>${l.name || '—'}</td>
+      <td><span class="badge badge-blue">Seat ${l.seat_id || '—'}</span></td>
+      <td style="font-size:0.75rem;color:#718096;">${l.entry_date || '—'}</td>
+      <td>${l.entry_time_fmt || '—'}</td>
+      <td>${l.exit_time_fmt  || '—'}</td>
+      <td style="font-size:0.75rem;color:#718096;">${l.duration || '—'}</td>
+      <td>${l.exit_time ? '<span class="badge badge-green">Exited</span>' : '<span class="badge badge-red">Inside</span>'}</td>
+      <td>${!l.exit_time ? `<button class="release-btn" onclick="adminReleaseSeat('${l.seat_id}')">Release</button>` : '—'}</td>
+    </tr>`).join('');
+});
+
+socket.on('visitor-logs', (logs) => {
+  const tbody = document.getElementById('visitorLogsBody');
+  if (!logs || !logs.length) {
+    tbody.innerHTML = '<tr class="empty-row"><td colspan="6">Koi visitor nahi aaya</td></tr>';
+    document.getElementById('ad-visitors').textContent = 0;
+    return;
+  }
+  document.getElementById('ad-visitors').textContent = logs.length;
+  tbody.innerHTML = logs.map(l => `
+    <tr>
+      <td><strong>${l.name}</strong></td>
+      <td>${l.mobile}</td>
+      <td>${l.email || '—'}</td>
+      <td>${l.purpose || '—'}</td>
+      <td>${l.time || '—'}</td>
+      <td>${l.date || '—'}</td>
+    </tr>`).join('');
+});
+
+function switchLogTab(tab) {
+  document.getElementById('studentLogsDiv').style.display = tab==='student' ? 'block' : 'none';
+  document.getElementById('visitorLogsDiv').style.display = tab==='visitor' ? 'block' : 'none';
+  document.getElementById('tabStudent').classList.toggle('active', tab==='student');
+  document.getElementById('tabVisitor').classList.toggle('active', tab==='visitor');
+}
+
+// ============================================
+// =============================================
 function buildGrid() {
   ['A','B'].forEach(sec => {
     const grid = document.getElementById(`grid-${sec}`);
@@ -249,11 +1088,17 @@ function createSeatEl(id) {
   return el;
 }
 
-socket.on('all-seats', (data) => { seats = data; Object.keys(seats).forEach(updateSeatUI); updateCounts(); });
-socket.on('seat-update', (data) => { seats[data.seatId] = { occupied: data.occupied, studentId: data.studentId }; updateSeatUI(data.seatId); updateCounts(); });
+// =============================================
+// SOCKET EVENTS
+// =============================================
+socket.on('all-seats', (data) => { seats = data; Object.keys(seats).forEach(updateSeatUI); updateCounts(); if(isAdminLoggedIn){buildAdminGrid();updateAdminStats();} });
+socket.on('seat-update', (data) => { seats[data.seatId] = { occupied: data.occupied, studentId: data.studentId, studentName: data.studentName }; updateSeatUI(data.seatId); updateCounts(); if(isAdminLoggedIn){updateAdminSeatUI(data.seatId);updateAdminStats();} });
 socket.on('student-verified', (data) => { currentStudent = data.student; showStudentCard(data.student, data.isInside); });
 socket.on('error-msg', (data) => { alert(data.msg); });
 
+// =============================================
+// USB BARCODE SCANNER INPUT
+// =============================================
 const barcodeInput = document.getElementById('barcode-input');
 barcodeInput.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
@@ -261,29 +1106,108 @@ barcodeInput.addEventListener('keydown', (e) => {
     if (code) { socket.emit('verify-student', { barcode: code }); barcodeInput.value = ''; }
   }
 });
-setInterval(() => barcodeInput.focus(), 2000);
+setInterval(() => {
+  if (document.activeElement !== document.getElementById('confirm-btn')) {
+    barcodeInput.focus();
+  }
+}, 2000);
 
-async function startCamera() {
+// =============================================
+// CAMERA — WITH DROPDOWN SELECTOR
+// =============================================
+async function loadCameras() {
   try {
+    // First request permission
+    await navigator.mediaDevices.getUserMedia({ video: true });
+
     const devices = await navigator.mediaDevices.enumerateDevices();
     const videoDevices = devices.filter(d => d.kind === 'videoinput');
-    const deviceId = videoDevices[videoDevices.length - 1].deviceId;
-    const stream = await navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: deviceId } } });
-    document.getElementById('camera-view').srcObject = stream;
-    Quagga.init({ inputStream: { type: 'LiveStream', target: document.getElementById('camera-view'), constraints: { deviceId: { exact: deviceId } } }, decoder: { readers: ['code_128_reader','ean_reader','ean_8_reader','code_39_reader'] }, locate: true }, (err) => { if (!err) Quagga.start(); });
+
+    const select = document.getElementById('camera-select');
+    select.innerHTML = '<option value="">📷 Select Camera...</option>';
+
+    videoDevices.forEach((device, index) => {
+      const option = document.createElement('option');
+      option.value = device.deviceId;
+      option.textContent = device.label || `Camera ${index + 1}`;
+      // Auto-select DroidCam if found
+      if (device.label.toLowerCase().includes('droid') ||
+          device.label.toLowerCase().includes('virtual') ||
+          device.label.toLowerCase().includes('ip cam')) {
+        option.selected = true;
+      }
+      select.appendChild(option);
+    });
+
+    // Auto start with selected camera
+    if (select.value) {
+      await switchCamera(select.value);
+    } else if (videoDevices.length > 0) {
+      select.value = videoDevices[videoDevices.length - 1].deviceId;
+      await switchCamera(select.value);
+    }
+
+  } catch(err) {
+    console.log('Camera load error:', err);
+  }
+}
+
+async function switchCamera(deviceId) {
+  if (!deviceId) return;
+
+  // Stop previous stream
+  if (currentStream) {
+    currentStream.getTracks().forEach(t => t.stop());
+    currentStream = null;
+  }
+
+  try {
+    Quagga.stop();
+  } catch(e) {}
+
+  try {
+    currentStream = await navigator.mediaDevices.getUserMedia({
+      video: { deviceId: { exact: deviceId }, width: 260, height: 155 }
+    });
+    document.getElementById('camera-view').srcObject = currentStream;
+
+    Quagga.init({
+      inputStream: {
+        type: 'LiveStream',
+        target: document.getElementById('camera-view'),
+        constraints: { deviceId: { exact: deviceId } }
+      },
+      decoder: {
+        readers: ['code_128_reader', 'ean_reader', 'ean_8_reader', 'code_39_reader']
+      },
+      locate: true
+    }, (err) => {
+      if (!err) Quagga.start();
+    });
+
     let lastCode = '', lastTime = 0;
     Quagga.onDetected((result) => {
       const code = result.codeResult.code, now = Date.now();
-      if (code !== lastCode || now - lastTime > 3000) { lastCode = code; lastTime = now; socket.emit('verify-student', { barcode: code }); }
+      if (code !== lastCode || now - lastTime > 3000) {
+        lastCode = code; lastTime = now;
+        socket.emit('verify-student', { barcode: code });
+      }
     });
-  } catch(err) { console.log('Camera error:', err); }
+
+  } catch(err) {
+    console.log('Switch camera error:', err);
+  }
 }
 
+// =============================================
+// STUDENT CARD
+// =============================================
 function showStudentCard(student, isInside) {
   const card = document.getElementById('student-card');
   document.getElementById('student-name').textContent = student.name;
   document.getElementById('student-id').textContent = `Roll No: ${student.roll_number}`;
   card.classList.add('show');
+
   if (isInside) {
     card.classList.add('exit-mode');
     document.getElementById('student-status').textContent = '🚪 Exiting — Releasing your seat...';
@@ -299,6 +1223,9 @@ function showStudentCard(student, isInside) {
   }
 }
 
+// =============================================
+// SEAT SELECTION
+// =============================================
 function selectSeat(id) {
   if (!currentStudent) { alert('Please scan your ID card first!'); return; }
   if (seats[id].occupied) return;
@@ -325,6 +1252,9 @@ function resetUI() {
   clearSelectedUI(); hideToast();
 }
 
+// =============================================
+// SEAT UI
+// =============================================
 function updateSeatUI(id) {
   const el = document.getElementById(`seat-${id}`);
   if (!el) return;
@@ -338,6 +1268,9 @@ function updateCounts() {
   document.getElementById('occ-count').textContent = occ;
 }
 
+// =============================================
+// TOAST
+// =============================================
 function showToast(type, name, seatId) {
   const toast = document.getElementById('toast');
   if (type === 'enter') {
@@ -362,13 +1295,120 @@ function hideToast() {
   document.getElementById('overlay').classList.remove('show');
 }
 
+// =============================================
+// MODE SWITCH — STUDENT / VISITOR
+// =============================================
+function switchMode(mode) {
+  if (mode === 'student') {
+    document.getElementById('studentSection').style.display = 'block';
+    document.getElementById('visitorSection').style.display = 'none';
+    document.getElementById('btnStudent').classList.add('active');
+    document.getElementById('btnVisitor').classList.remove('active');
+    // Refocus barcode input
+    setTimeout(() => document.getElementById('barcode-input').focus(), 100);
+  } else {
+    document.getElementById('studentSection').style.display = 'none';
+    document.getElementById('visitorSection').style.display = 'block';
+    document.getElementById('btnStudent').classList.remove('active');
+    document.getElementById('btnVisitor').classList.add('active');
+    setTimeout(() => document.getElementById('vName').focus(), 100);
+  }
+}
+
+// =============================================
+// VISITOR FORM SUBMIT
+// =============================================
+function submitVisitor() {
+  const name    = document.getElementById('vName').value.trim();
+  const mobile  = document.getElementById('vMobile').value.trim();
+  const email   = document.getElementById('vEmail').value.trim();
+  const purpose = document.getElementById('vPurpose').value;
+
+  // Validation
+  if (!name) { alertField('vName', 'Naam zaroori hai!'); return; }
+  if (!mobile || mobile.length !== 10) { alertField('vMobile', '10 digit mobile number daalo!'); return; }
+
+  const entryTime = new Date();
+  const visitorData = {
+    name, mobile, email, purpose,
+    entryTime: entryTime.toISOString(),
+    date: entryTime.toLocaleDateString('en-IN'),
+    time: entryTime.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }),
+  };
+
+  // Emit to server (MySQL save karega)
+  socket.emit('visitor-entry', visitorData);
+
+  // Show success card
+  document.getElementById('visitorForm').classList.remove('show');
+  document.getElementById('visitorForm').style.display = 'none';
+  const succ = document.getElementById('visitorSuccess');
+  succ.classList.add('show');
+  document.getElementById('vs-name').textContent = name;
+  document.getElementById('vs-info').innerHTML =
+    `📱 ${mobile}${email ? '<br>📧 ' + email : ''}` +
+    `${purpose ? '<br>🎯 ' + purpose : ''}<br>🕐 ${visitorData.time} — ${visitorData.date}`;
+
+  // Visitor toast
+  showVisitorToast(name);
+}
+
+function alertField(fieldId, msg) {
+  const el = document.getElementById(fieldId);
+  el.style.borderColor = '#e53e3e';
+  el.placeholder = msg;
+  el.focus();
+  setTimeout(() => { el.style.borderColor = '#e2e8f0'; el.placeholder = ''; }, 2500);
+}
+
+function resetVisitorForm() {
+  document.getElementById('vName').value = '';
+  document.getElementById('vMobile').value = '';
+  document.getElementById('vEmail').value = '';
+  document.getElementById('vPurpose').value = '';
+  const succ = document.getElementById('visitorSuccess');
+  succ.classList.remove('show');
+  const form = document.getElementById('visitorForm');
+  form.style.display = 'block';
+  form.classList.add('show');
+  document.getElementById('vName').focus();
+}
+
+function showVisitorToast(name) {
+  const toast = document.getElementById('toast');
+  document.getElementById('toast-icon').textContent = '🎉';
+  document.getElementById('toast-title').textContent = 'Visit Registered!';
+  document.getElementById('toast-msg').textContent = `Welcome, ${name}! Entry recorded.`;
+  document.getElementById('toast-seat').textContent = '';
+  toast.classList.add('show', 'visitor-toast');
+  document.getElementById('overlay').classList.add('show');
+  setTimeout(() => {
+    toast.classList.remove('show', 'visitor-toast');
+    document.getElementById('overlay').classList.remove('show');
+  }, 3000);
+}
+
+// Socket: visitor saved confirmation
+socket.on('visitor-saved', (data) => {
+  console.log('Visitor saved to DB:', data);
+});
+
+// =============================================
+// CLOCK
+// =============================================
 function updateClock() {
   const now = new Date();
   document.getElementById('clock').textContent = now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
   document.getElementById('date').textContent = now.toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
 }
 
-buildGrid(); startCamera(); updateClock(); setInterval(updateClock, 1000);
+// =============================================
+// INIT
+// =============================================
+buildGrid();
+loadCameras();
+updateClock();
+setInterval(updateClock, 1000);
 </script>
 </body>
 </html>
